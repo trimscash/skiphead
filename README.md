@@ -1,5 +1,5 @@
 # skiphead
-Forensic tool. Skip header and analyze it. Software that can separate files into n-byte sections, analyze them, and output them.
+Forensic tool. Software that can separate files into n-byte sections, analyze them, and output them.
 
 Useful when files are hidden and inserted every n bytes.
 
