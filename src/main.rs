@@ -1,4 +1,3 @@
-use clap::Error;
 use clap::{CommandFactory, Parser};
 use file_format::FileFormat;
 use std::fs;
