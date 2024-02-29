@@ -46,6 +46,25 @@ Options:
 
 ```
 
+# Example
+### picoCTF 2023 Invisible WORDs
+
+https://play.picoctf.org/practice/challenge/354
+
+この問題を以下のwriteupを参考にしながら`skiphead`で解く．
+
+https://digitaltravesia.jp/CTF/picoCTF2023/picoCTF_2023_Writeup.html
+
+ファイルオフセット`140 byte`から`4byte`ごとに`2byte`，別のファイルが挿入されている．
+
+これを`skiphead`でやると以下のコマンドでできる．
+
+```
+skiphead 
+```
+
+
+
 # Todo
 - Added a mode to search files by combining the given skip, pick_offset, and pick_length arrays.
   	(与えたskip, pick_offset, pick_lengthの配列を組み合わせてファイルを探索するモードの追加．)
