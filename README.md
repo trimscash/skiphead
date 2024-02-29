@@ -5,7 +5,7 @@ Useful when files are hidden and inserted every n bytes.
 
 フォレンジックツール．ファイルをnバイトごとにskipして解析することができます．ファイルをnバイトごとに区切って解析し，出力できるソフト．
 
-ファイルがnバイトごとに別のファイルに挿入されている場合に便利です．
+nバイトごとに別のファイルが挿入されている場合に便利です．
 
 ![image](https://github.com/trimscash/skiphead/assets/42578480/6e1f3be4-e066-4038-b2b0-a2a1b40e91ae)
 
