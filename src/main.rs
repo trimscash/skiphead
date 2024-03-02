@@ -89,8 +89,8 @@ fn skiped_and_picked_file_buf(
     result
 }
 
-/// Parse the header of the file skipped by n bytes and display the file type.
-/// skiphead can search for file types by combining parameters.
+/// Parse the header of the file skipped by n bytes and display the file type.{n}
+/// skiphead can search for file types by combining parameters.{n}
 /// Forensic app.
 #[derive(Parser, Debug)]
 #[command(about, long_about = None)]
