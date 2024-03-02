@@ -7,7 +7,15 @@ Useful when files are hidden and inserted every n bytes.
 
 nバイトごとに別のファイルが挿入されている場合に便利です．
 
+
 ![image](https://github.com/trimscash/skiphead/assets/42578480/6e1f3be4-e066-4038-b2b0-a2a1b40e91ae)
+
+
+You can search for file types by combining parameters.
+
+パラメータを組み合わせてファイルの種類を探索できます，
+
+![image](https://github.com/trimscash/skiphead/assets/42578480/eeb123be-8904-4291-b32e-10e53e7d51bf)
 
 
 # Setup
@@ -23,31 +31,36 @@ Replace .zshrc with the one you are using
 
 # Usage
 ```
-Parse the header of the file skipped by n bytes and display the file type. Forensic app
+Parse the header of the file skipped by n bytes and display the file type.
+ skiphead can search for file types by combining parameters.
+ Forensic app
 
 Usage: skiphead [OPTIONS] <FILE>
 
 Arguments:
-  <FILE>  
+  <FILE>
 
 Options:
-  -n <SKIP_NUMS>...
-          Number of skips. Must be greater than 0 [default: 1 2 3]
-  -l <PICK_LENGTH>
-          Length to pick up from that location. Must be greater than 0 [default: 1]
-  -o <PICK_OFFSET>
+  -s <SKIP_NUMS>...
+          Number of skips. Must be greater than 0 [default: 1 2 3] [short aliases: n]
+  -l <PICK_LENGTH>...
+          Length to pick up from that location. Must be greater than 0 [default: 0]
+  -o <PICK_OFFSET>...
           Offset to start picking within that range. Must be greater than or equal to 0 [default: 0]
   -f <FILE_OFFSET>
           Offset to start parsing the entire file [default: 0]
-      --output
-          Whether to output the file
+  -c, --combinate
+          Combinate param mode. default mode is one on one
+  -x, --export-file
+          Whether to output the file [aliases: output, export, output-file]
+  -z, --only
+          Only non bin file
   -p, --print
           Print head of buffer
       --output-directory <OUTPUT_DIRECTORY>
           Output directory path [default: ./skiphead_out]
   -h, --help
           Print help
-
 ```
 
 # Example
