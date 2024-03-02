@@ -117,10 +117,6 @@ This is expanded with the following command, and the flag is obtained by extract
 picoCTF{w0rd_d4wg_y0u_f0und_5h3113ys_m4573rp13c3_a23dfbd4}
 ```
 
-現時点では，与えたパラメータを自動で組み合わせて，考えられるパターンを総当たりする機能はないが，いずれやる．(やる気が消えてしまったのでだれかやってください．)
-
-At this time, there is no function to automatically combine the given parameters and guess all possible patterns, but it will be done eventually. (I've lost my motivation to do this, so someone please do it.) 
-
-# Todo
-- Added a mode to search files by combining the given skip, pick_offset, and pick_length arrays.
-  	(与えたskip, pick_offset, pick_lengthの配列を組み合わせてファイルを探索するモードの追加．)
+# todo
+- Contributions are welcome!
+- ほしい機能があればコントリビュータになってください！
