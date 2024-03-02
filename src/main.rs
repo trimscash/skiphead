@@ -113,7 +113,7 @@ struct Args {
     #[arg(long, action)]
     output: bool,
 
-    /// Whether to print only non bin file.
+    /// Only non bin file.
     #[arg(short = 'e', long, action)]
     only: bool,
 
@@ -164,6 +164,8 @@ fn main() {
     let mut sorted_skip_nums: Vec<usize> = args.skip_nums.clone();
     sorted_skip_nums.sort();
 
+    let mut exists_non_bin = false;
+
     for skip in sorted_skip_nums.iter() {
         let skip_picked_data: Vec<u8> = skiped_and_picked_file_buf(
             *skip,
@@ -174,8 +176,12 @@ fn main() {
         );
         let fmt: FileFormat = FileFormat::from_bytes(&skip_picked_data);
 
-        if args.only && matches!(fmt, FileFormat::ArbitraryBinaryData) {
-            continue;
+        if matches!(fmt, FileFormat::ArbitraryBinaryData) {
+            if args.only {
+                continue;
+            }
+        } else {
+            exists_non_bin = true;
         }
 
         print_result(
@@ -185,6 +191,7 @@ fn main() {
             args.file_offset,
             &fmt,
         );
+
         if args.print {
             println!("{:x?}", &skip_picked_data[0..32]);
         }
@@ -203,5 +210,9 @@ fn main() {
                 Err(_) => return,
             };
         }
+    }
+
+    if exists_non_bin == false && args.only {
+        println!("Non-binary files was not detected.");
     }
 }
