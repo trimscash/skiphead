@@ -116,7 +116,7 @@ struct Args {
     combinate: bool,
 
     /// Whether to output the file.
-    #[arg(short = 'x', visible_aliases = ["output","export","output-file"], long, action)]
+    #[arg(short = 'x', visible_short_alias='e', visible_aliases = ["output","export","output-file"], long, action)]
     export_file: bool,
 
     /// Only non bin file.
