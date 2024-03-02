@@ -110,8 +110,8 @@ struct Args {
     file_offset: usize,
 
     /// Whether to output the file.
-    #[arg(long, action)]
-    output: bool,
+    #[arg(short = 'x', visible_aliases = ["output","export","output-file"], long, action)]
+    export_file: bool,
 
     /// Only non bin file.
     #[arg(short = 'e', long, action)]
@@ -149,7 +149,7 @@ fn main() {
         return;
     }
 
-    if args.output {
+    if args.export_file {
         if !fs::metadata(&args.output_directory).is_ok() {
             let _ = match fs::create_dir(&args.output_directory) {
                 Ok(f) => f,
@@ -197,7 +197,7 @@ fn main() {
         }
         println!();
 
-        if args.output {
+        if args.export_file {
             match output_file(
                 *skip,
                 args.pick_offset,
