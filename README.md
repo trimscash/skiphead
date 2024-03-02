@@ -15,7 +15,8 @@ You can search for file types by combining parameters.
 
 パラメータを組み合わせてファイルの種類を探索できます，
 
-![image](https://github.com/trimscash/skiphead/assets/42578480/eeb123be-8904-4291-b32e-10e53e7d51bf)
+![image](https://github.com/trimscash/skiphead/assets/42578480/f7fc47fa-433f-4851-ad3a-3d801326ae44)
+
 
 
 # Setup
