@@ -79,7 +79,6 @@ fn skiped_and_picked_file_buf(
 ) -> Vec<u8> {
     let mut result: Vec<u8> = Vec::new();
     let mut index = file_offset;
-    println!("aaa");
     while index < buf.len() {
         let end_index = index + (pick_length + pick_offset).min(buf.len() - index);
         let start_index = index + pick_offset.min(buf.len() - index);
@@ -91,12 +90,13 @@ fn skiped_and_picked_file_buf(
 }
 
 /// Parse the header of the file skipped by n bytes and display the file type.
+/// skiphead can search for file types by combining parameters.
 /// Forensic app.
 #[derive(Parser, Debug)]
 #[command(about, long_about = None)]
 struct Args {
     /// Number of skips. Must be greater than 0.
-    #[arg(short='n',visible_short_alias='s', value_delimiter = ' ', num_args = 1.., default_values_t = [1,2,3],)]
+    #[arg(short='s',visible_short_alias='n', value_delimiter = ' ', num_args = 1.., default_values_t = [1,2,3],)]
     skip_nums: Vec<usize>,
 
     /// Length to pick up from that location. Must be greater than 0.
@@ -195,21 +195,17 @@ fn main() {
         let mut pick_offsets: Vec<usize> = args.pick_offset.clone();
 
         let lens: Vec<usize> = Vec::from([skip_nums.len(), pick_lengths.len(), pick_offsets.len()]);
-        println!("{:?}", lens);
         let max_length = *lens.iter().max().unwrap();
+
         skip_nums.resize(max_length, 0);
         pick_lengths.resize(max_length, 0);
         pick_offsets.resize(max_length, 0);
-        println!("{:?}", skip_nums);
-        println!("{:?}", pick_lengths);
-        println!("{:?}", pick_offsets);
 
         for ((skip_num, pick_offset), pick_length) in skip_nums
             .iter()
             .zip(pick_offsets.iter())
             .zip(pick_lengths.iter())
         {
-            println!("{:?}", (*skip_num, *pick_offset, *pick_length));
             match do_skip(
                 *skip_num,
                 *pick_offset,
