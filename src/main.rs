@@ -113,6 +113,10 @@ struct Args {
     #[arg(long, action)]
     output: bool,
 
+    /// Whether to print only non bin file.
+    #[arg(short = 'e', long, action)]
+    only: bool,
+
     /// Print head of buffer.
     #[arg(short, long, action)]
     print: bool,
@@ -169,6 +173,11 @@ fn main() {
             &file_buf,
         );
         let fmt: FileFormat = FileFormat::from_bytes(&skip_picked_data);
+
+        if args.only && matches!(fmt, FileFormat::ArbitraryBinaryData) {
+            continue;
+        }
+
         print_result(
             *skip,
             args.pick_offset,
