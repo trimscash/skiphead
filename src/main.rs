@@ -96,19 +96,19 @@ fn skiped_and_picked_file_buf(
 #[command(about, long_about = None)]
 struct Args {
     /// Number of skips. Must be greater than 0.
-    #[arg(short='s',visible_short_alias='n', value_delimiter = ' ', num_args = 1.., default_values_t = [1,2,3],)]
+    #[arg(short='s',visible_short_alias='n',visible_aliases=["skip"], value_delimiter = ' ', num_args = 1.., default_values_t = [1,2,3],)]
     skip_nums: Vec<usize>,
 
     /// Length to pick up from that location. Must be greater than 0.
-    #[arg(short = 'l', value_delimiter = ' ', num_args = 1.., default_values_t = [0])]
+    #[arg(short = 'l', value_delimiter = ' ',visible_aliases=["pick_length"], num_args = 1.., default_values_t = [1])]
     pick_length: Vec<usize>,
 
     /// Offset to start picking within that range. Must be greater than or equal to 0.
-    #[arg(short = 'o', value_delimiter = ' ', num_args = 1.., default_values_t = [0])]
+    #[arg(short = 'o', value_delimiter = ' ', visible_aliases=["pick_offset"],num_args = 1.., default_values_t = [0])]
     pick_offset: Vec<usize>,
 
     /// Offset to start parsing the entire file.
-    #[arg(short = 'f', default_value_t = 0)]
+    #[arg(short = 'f', visible_aliases=["file_offset"],default_value_t = 0)]
     file_offset: usize,
 
     /// Combinate param mode. default mode is one on one.
@@ -149,9 +149,23 @@ fn main() {
     let mut file_buf = Vec::new();
     file.read_to_end(&mut file_buf).expect("Can't read");
 
-    if args.skip_nums.contains(&0) {
-        println!("Number of skips must be greater than 0.");
-        _ = cmd.print_help();
+    // validate params
+    let red = color::Fg(color::Red);
+    let reset = color::Fg(color::Reset);
+
+    if !args.skip_nums.iter().all(|&e| e > 0) {
+        println!("{}Number of skips must be greater than 0.{}\n", red, reset);
+        println!("  -h, --help");
+        println!("          Print help");
+        return;
+    }
+    if !args.pick_length.iter().all(|&e| e > 0) {
+        println!(
+            "{}Length to pick up must be greater than 0.{}\n",
+            red, reset
+        );
+        println!("  -h, --help");
+        println!("          Print help");
         return;
     }
 
