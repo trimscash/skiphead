@@ -211,8 +211,8 @@ fn main() {
         let lens: Vec<usize> = Vec::from([skip_nums.len(), pick_lengths.len(), pick_offsets.len()]);
         let max_length = *lens.iter().max().unwrap();
 
-        skip_nums.resize(max_length, 0);
-        pick_lengths.resize(max_length, 0);
+        skip_nums.resize(max_length, 1);
+        pick_lengths.resize(max_length, 1);
         pick_offsets.resize(max_length, 0);
 
         for ((skip_num, pick_offset), pick_length) in skip_nums
